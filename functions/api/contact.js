@@ -23,16 +23,21 @@ const json = (body, status = 200) =>
 const escapeHtml = (s) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
-/** Enlace de WhatsApp. Un celular boliviano sin prefijo (8 dígitos, empieza en 6 o 7) lleva +591. */
-const whatsappUrl = (phone) => {
-  const digits = phone.replace(/\D/g, '');
-  const full = !phone.trim().startsWith('+') && /^[67]\d{7}$/.test(digits) ? `591${digits}` : digits;
-  return `https://wa.me/${full}`;
-};
+/**
+ * Número en formato internacional. `country` viene del selector del formulario ("BO+591"); si la
+ * persona ya escribió el número con +, se respeta tal cual. Devuelve null si no es un número válido.
+ */
+function internationalPhone(phone, country) {
+  if (!PHONE_RE.test(phone)) return null;
+  const dial = /^[A-Z]{2}\+(\d{1,4})$/.exec(country)?.[1] ?? '591';
+  const typedIntl = phone.startsWith('+');
+  const digits = typedIntl ? phone.replace(/\D/g, '') : dial + phone.replace(/\D/g, '').replace(/^0+/, '');
+  if (digits.length < 8 || digits.length > 15) return null;
+  return { shown: typedIntl ? phone : `+${dial} ${phone}`, wa: `https://wa.me/${digits}` };
+}
 
 async function sendEmail(env, m) {
   if (!env.RESEND_API_KEY) return false;
-  const wa = m.phone ? whatsappUrl(m.phone) : '';
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
@@ -41,8 +46,8 @@ async function sendEmail(env, m) {
       to: [env.CONTACT_TO || 'abastorossmel@gmail.com'],
       reply_to: m.email,
       subject: m.context ? `Blog: comentario de ${m.name} sobre "${m.context}"` : `Portafolio: mensaje de ${m.name}`,
-      text: `Nombre: ${m.name}\nCorreo: ${m.email}${m.phone ? `\nWhatsApp/teléfono: ${m.phone} (${wa})` : ''}\nIdioma del sitio: ${m.lang}${m.context ? `\nArtículo: ${m.context}` : ''}\n\n${m.message}`,
-      html: `<p><b>Nombre:</b> ${escapeHtml(m.name)}<br><b>Correo:</b> ${escapeHtml(m.email)}${m.phone ? `<br><b>WhatsApp/teléfono:</b> <a href="${wa}">${escapeHtml(m.phone)}</a>` : ''}<br><b>Idioma del sitio:</b> ${m.lang}${m.context ? `<br><b>Artículo:</b> ${escapeHtml(m.context)}` : ''}</p><p style="white-space:pre-wrap">${escapeHtml(m.message)}</p>`,
+      text: `Nombre: ${m.name}\nCorreo: ${m.email}${m.phone ? `\nWhatsApp/teléfono: ${m.phone.shown} (${m.phone.wa})` : ''}\nIdioma del sitio: ${m.lang}${m.context ? `\nArtículo: ${m.context}` : ''}\n\n${m.message}`,
+      html: `<p><b>Nombre:</b> ${escapeHtml(m.name)}<br><b>Correo:</b> ${escapeHtml(m.email)}${m.phone ? `<br><b>WhatsApp/teléfono:</b> <a href="${m.phone.wa}">${escapeHtml(m.phone.shown)}</a>` : ''}<br><b>Idioma del sitio:</b> ${m.lang}${m.context ? `<br><b>Artículo:</b> ${escapeHtml(m.context)}` : ''}</p><p style="white-space:pre-wrap">${escapeHtml(m.message)}</p>`,
     }),
   }).catch(() => null);
   return Boolean(res && res.ok);
@@ -54,7 +59,7 @@ async function sendTelegram(env, m) {
     `<b>📬 ${m.context ? `Comentario del blog: ${escapeHtml(m.context)}` : 'Mensaje del portafolio'}</b>`,
     `<b>Nombre:</b> ${escapeHtml(m.name)}`,
     `<b>Correo:</b> ${escapeHtml(m.email)}`,
-    ...(m.phone ? [`<b>WhatsApp:</b> <a href="${whatsappUrl(m.phone)}">${escapeHtml(m.phone)}</a>`] : []),
+    ...(m.phone ? [`<b>WhatsApp:</b> <a href="${m.phone.wa}">${escapeHtml(m.phone.shown)}</a>`] : []),
     `<b>Idioma:</b> ${m.lang}`,
     '',
     // Telegram corta en 4096 caracteres
@@ -86,13 +91,16 @@ export async function onRequestPost({ request, env }) {
     name: String(data.get('name') ?? '').replace(/\s+/g, ' ').trim(),
     email: String(data.get('email') ?? '').trim(),
     phone: String(data.get('phone') ?? '').replace(/\s+/g, ' ').trim(),
+    country: String(data.get('phone_country') ?? ''),
     message: String(data.get('message') ?? '').trim(),
     lang: data.get('lang') === 'en' ? 'en' : 'es',
     // Artículo del blog desde el que se escribe (opcional)
     context: String(data.get('context') ?? '').replace(/\s+/g, ' ').trim().slice(0, 200),
   };
-  const phoneOk = !m.phone || (PHONE_RE.test(m.phone) && m.phone.replace(/\D/g, '').length >= 6);
-  if (!m.name || !m.message || !EMAIL_RE.test(m.email) || !phoneOk || m.name.length > MAX.name || m.email.length > MAX.email || m.phone.length > MAX.phone || m.message.length > MAX.message) {
+  const typedPhone = m.phone;
+  m.phone = typedPhone ? internationalPhone(typedPhone, m.country) : null;
+  const phoneOk = !typedPhone || m.phone !== null;
+  if (!m.name || !m.message || !EMAIL_RE.test(m.email) || !phoneOk || m.name.length > MAX.name || m.email.length > MAX.email || typedPhone.length > MAX.phone || m.message.length > MAX.message) {
     return json({ ok: false, error: 'invalid' }, 400);
   }
 
