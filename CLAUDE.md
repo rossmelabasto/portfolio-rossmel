@@ -89,7 +89,13 @@ Antes de dar algo por terminado: `npm run build`, `npm run check` y `npm run ver
   "Fuera del código" → 3 capítulos: Cubos de Rubik, Fútbol, Música y podcasts. Dibujos nuevos: timer,
   ball, goal, headphones, note, mic (se quitó el compuesto `hobbies`). La intro ya no dice "mi propia
   distro": rOS es "mi propio flavor de Arch" en todo el sitio.
-- Siguiente: capturas y video de AdvAI (Rossmel); GitHub/LinkedIn (docs/).
+- v3.22: selección de texto con tokens propios del tema (`--selection`), porque las páginas de proyecto
+  pisan `--accent` (AdvAI = lima → ilegible en modo claro). Formulario de contacto: campo opcional
+  WhatsApp/teléfono (validado; enlace wa.me, +591 si es celular boliviano sin prefijo) y aviso por
+  Telegram (`TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, bot propio, NO el de Clawdio): basta con que
+  llegue por un canal para responder OK. Ver README → Formulario de contacto.
+- Siguiente: capturas y video de AdvAI (Rossmel); GitHub/LinkedIn (docs/); crear el bot de avisos y
+  pegar sus variables en Pages (Rossmel).
 - Analítica: inyección automática de Cloudflare, sin token.
 - Preguntas abiertas para Rossmel y decisiones por proyecto: `docs/PROYECTOS-CANDIDATOS.md`.
 - Despliegue: Cloudflare Pages, proyecto `rossmel-portfolio` conectado a este repo (rama `main`). Ver README → Despliegue.
