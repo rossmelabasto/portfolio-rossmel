@@ -314,8 +314,11 @@ falla pero Telegram llega, el formulario responde OK. Configuración: en Telegra
 `https://api.telegram.org/bot<TOKEN>/getUpdates` y copiar `message.chat.id`. Usar un bot **solo para
 esto** (no el de Clawdio). Sin estas dos variables, el formulario funciona igual que antes (solo correo).
 
-**Campo WhatsApp/teléfono (opcional):** llega en el correo y en Telegram con enlace `wa.me`. Un celular
-boliviano de 8 dígitos sin prefijo se enlaza con +591.
+**Campo WhatsApp/teléfono (opcional):** con selector de país (Bolivia por defecto; lista y prefijos de
+`libphonenumber-js`, nombres con `Intl.DisplayNames`, todo en el build: no se envía JS extra). El
+`<select>` es nativo y transparente encima del prefijo visible, así sigue siendo accesible. Llega en el
+correo y en Telegram como `+591 7…` con enlace `wa.me`; si la persona escribe el número con `+`, se
+respeta tal cual.
 
 Respuestas de la API: `200 {ok:true}`, `400 invalid|captcha`, `502 send_failed` (fallaron todos los
 canales), `503 not_configured` (falta Turnstile o no hay ningún canal).

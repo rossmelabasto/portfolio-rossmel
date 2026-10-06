@@ -94,8 +94,10 @@ Antes de dar algo por terminado: `npm run build`, `npm run check` y `npm run ver
   WhatsApp/teléfono (validado; enlace wa.me, +591 si es celular boliviano sin prefijo) y aviso por
   Telegram (`TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`, bot propio, NO el de Clawdio): basta con que
   llegue por un canal para responder OK. Ver README → Formulario de contacto.
-- Siguiente: capturas y video de AdvAI (Rossmel); GitHub/LinkedIn (docs/); crear el bot de avisos y
-  pegar sus variables en Pages (Rossmel).
+- v3.23: selector de país en el teléfono del formulario (Bolivia por defecto, `libphonenumber-js` solo en
+  el build). `TELEGRAM_CHAT_ID` ya está en Pages (Production); falta que Rossmel pegue
+  `TELEGRAM_BOT_TOKEN` (bot @rossmel_and_claude_bot) y redesplegar.
+- Siguiente: capturas y video de AdvAI (Rossmel); GitHub/LinkedIn (docs/).
 - Analítica: inyección automática de Cloudflare, sin token.
 - Preguntas abiertas para Rossmel y decisiones por proyecto: `docs/PROYECTOS-CANDIDATOS.md`.
 - Despliegue: Cloudflare Pages, proyecto `rossmel-portfolio` conectado a este repo (rama `main`). Ver README → Despliegue.
