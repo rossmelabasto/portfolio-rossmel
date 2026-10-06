@@ -16,7 +16,7 @@ const field = 'w-full rounded-2xl border border-line bg-bg-2 px-5 py-4 text-fg p
   {turnstileKey && (
     <form data-contact-form action="/api/contact" method="post" class:list={["grid max-w-3xl gap-4", cls]} data-reveal
       data-msg-sending={s.contact.sending} data-msg-ok={s.contact.ok} data-msg-invalid={s.contact.invalid}
-      data-msg-captcha={s.contact.captcha} data-msg-required={s.contact.required} data-msg-bad-email={s.contact.badEmail} data-msg-error={`${s.contact.error} ${profile.email}.`}>
+      data-msg-captcha={s.contact.captcha} data-msg-required={s.contact.required} data-msg-bad-email={s.contact.badEmail} data-msg-bad-phone={s.contact.badPhone} data-msg-error={`${s.contact.error} ${profile.email}.`}>
       <h3 class="display text-3xl font-semibold md:text-4xl">{title}</h3>
       <input type="hidden" name="lang" value={lang} />
       {context && <input type="hidden" name="context" value={context} />}
@@ -24,6 +24,7 @@ const field = 'w-full rounded-2xl border border-line bg-bg-2 px-5 py-4 text-fg p
       <div class="grid gap-4 md:grid-cols-2">
         <label class="grid gap-2"><span class="kicker">{s.contact.name}</span><input class={field} name="name" required maxlength="100" autocomplete="name" /></label>
         <label class="grid gap-2"><span class="kicker">{s.contact.email}</span><input class={field} type="email" name="email" required maxlength="200" autocomplete="email" /></label>
+        <label class="grid gap-2"><span class="kicker">{s.contact.phone}</span><input class={field} type="tel" name="phone" maxlength="40" inputmode="tel" autocomplete="tel" pattern="\+?[0-9\s\(\).\-]{6,40}" placeholder="+591 7…" /></label>
       </div>
       <label class="grid gap-2"><span class="kicker">{s.contact.message}</span><textarea class={field} name="message" required maxlength="5000" rows="5"></textarea></label>
       <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="auto" data-language={lang}></div>
@@ -60,10 +61,10 @@ const field = 'w-full rounded-2xl border border-line bg-bg-2 px-5 py-4 text-fg p
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const msg = (k: string) => form.dataset[`msg${k}`] ?? '';
     // Mensajes de validación en el idioma de la página (los nativos salen en el idioma del navegador)
-    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]').forEach((field) => {
+    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], input[pattern], textarea[required]').forEach((field) => {
       field.addEventListener('invalid', () => {
         const v = field.validity;
-        field.setCustomValidity(v.valueMissing ? msg('Required') : v.typeMismatch ? msg('BadEmail') : '');
+        field.setCustomValidity(v.valueMissing ? msg('Required') : v.typeMismatch ? msg('BadEmail') : v.patternMismatch ? msg('BadPhone') : '');
       });
       field.addEventListener('input', () => field.setCustomValidity(''));
     });

@@ -304,9 +304,21 @@ de contacto muestra solo los botones de correo/CV. Configuración (una vez):
    - `RESEND_API_KEY` = API key de Resend (**Secret**)
    - opcionales: `CONTACT_TO` (destino, por defecto abastorossmel@gmail.com),
      `CONTACT_FROM` (por defecto `Portafolio <contacto@rossmel.top>`)
+   - opcionales, aviso por Telegram: `TELEGRAM_BOT_TOKEN` (**Secret**) y `TELEGRAM_CHAT_ID`
 4. Redesplegar (Deployments → Retry) y probar el formulario en producción.
 
-Respuestas de la API: `200 {ok:true}`, `400 invalid|captcha`, `502 send_failed`, `503 not_configured`.
+**Aviso por Telegram (opcional, recomendado):** cada mensaje llega también a un bot propio, con
+notificación push, por si Gmail no avisa o el correo que dejó la persona está mal escrito. Si el correo
+falla pero Telegram llega, el formulario responde OK. Configuración: en Telegram, @BotFather →
+`/newbot` → copiar el token; escribirle cualquier cosa al bot nuevo; abrir
+`https://api.telegram.org/bot<TOKEN>/getUpdates` y copiar `message.chat.id`. Usar un bot **solo para
+esto** (no el de Clawdio). Sin estas dos variables, el formulario funciona igual que antes (solo correo).
+
+**Campo WhatsApp/teléfono (opcional):** llega en el correo y en Telegram con enlace `wa.me`. Un celular
+boliviano de 8 dígitos sin prefijo se enlaza con +591.
+
+Respuestas de la API: `200 {ok:true}`, `400 invalid|captcha`, `502 send_failed` (fallaron todos los
+canales), `503 not_configured` (falta Turnstile o no hay ningún canal).
 
 ### Blog
 
@@ -519,6 +531,7 @@ Ramas:
 | 2026-09 | v3.13: botón "volver arriba" con anillo de progreso y más dibujos a mano (subrayados/círculos en hero, experiencia, proyectos, historia y los 22 artículos). Pedido de Rossmel. |
 | 2026-09 | v3.15: nuevo titular del hero ("Construyo interfaces rápidas, cuidadas y listas para producción. Programo desde 2020…"), íconos en los botones CV y ES/EN (nav y barra del CV) y el botón "volver arriba" sube al llegar al footer para no tapar sus enlaces. Pedido de Rossmel. |
 | 2026-09 | Traspaso a Claude local: guía `docs/CONTINUAR.md` y `npm run verify` (chequeo automático tras el build). |
+| 2026-10 | Formulario: campo opcional de WhatsApp/teléfono y aviso por Telegram además del correo (un mensaje llegó con un correo mal escrito que rebotó, y Gmail no avisó a tiempo). Pedido de Rossmel. |
 | 2026-10 | `/sobre-mi/` rehecha: foto solo arriba (ya no sticky), capítulos intercalados izquierda/derecha que entran desde su costado (`data-slide`), cada uno con un dibujo principal + 3 secundarios con parallax y un número grande de fondo; flechas a mano entre capítulos. Se quitó "Mi camino" (`journey`). "Fuera del código" se dividió en Cubos de Rubik / Fútbol / Música y podcasts. Pedido de Rossmel. |
 | 2026-09 | v3.14: dibujo por proyecto y dibujos "en vuelo" en más secciones; CV con "WANT Digital Agency" completo y más proyectos (Homelab, Notebook, Rubik, rOS). Pedido de Rossmel. |
 | 2026-09 | Fuera del sitio: watcher-backend, prototipos v0 (salvo SGPG), proyectos descartados, proyectos personales/regalos. |
