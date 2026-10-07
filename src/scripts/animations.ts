@@ -7,6 +7,7 @@
  *                      El contenedor debe recortar en x (overflow-x-clip) para no generar scroll lateral.
  *  data-words          párrafo cuyas palabras se "encienden" con el scroll (scrub)
  *  data-horizontal     sección fijada con scroll horizontal (contenedor)
+ *  data-stack          lista de proyectos en celular: queda fija y abre un proyecto a la vez
  *    └ data-track      la fila que se desplaza
  *  data-timeline       línea de tiempo con barra de progreso
  *    └ data-progress   barra que crece
@@ -279,6 +280,40 @@ function initHorizontal() {
   });
 }
 
+/* ---------------- Lista de proyectos (móvil) ---------------- */
+/** En celular la lista de destacados queda fija y el scroll abre un proyecto a la vez (encaja en cada uno). */
+function initStack() {
+  const mm = gsap.matchMedia();
+  mm.add('(max-width: 767px)', () => {
+    const stack = document.querySelector<HTMLElement>('[data-stack]');
+    const items = stack ? [...stack.querySelectorAll<HTMLElement>('[data-stack-item]')] : [];
+    if (!stack || items.length < 2) return;
+    const steps = items.length - 1;
+    let current = -1;
+    const setActive = (i: number) => {
+      if (i === current) return;
+      items.forEach((el, k) => el.toggleAttribute('data-active', k === i));
+      current = i;
+    };
+    stack.classList.add('is-live');
+    setActive(0);
+    const st = ScrollTrigger.create({
+      trigger: stack,
+      start: 'top top+=84', // debajo del menú flotante
+      end: () => `+=${steps * window.innerHeight * 0.18}`,
+      pin: true,
+      pinSpacing: true, // el padre es flex: sin esto GSAP no reserva el espacio y la sección siguiente se monta encima
+      snap: { snapTo: 1 / steps, duration: { min: 0.15, max: 0.35 }, ease: 'power1.inOut' },
+      onUpdate: (self) => setActive(Math.round(self.progress * steps)),
+    });
+    return () => {
+      st.kill();
+      stack.classList.remove('is-live');
+      items.forEach((el) => el.removeAttribute('data-active'));
+    };
+  });
+}
+
 /* ---------------- Foto en capas ---------------- */
 function initLayers() {
   document.querySelectorAll<HTMLElement>('[data-layers]').forEach((box) => {
@@ -414,6 +449,7 @@ export async function initAnimations() {
   // El resto de la página se prepara después, en pedazos, sin trabar la entrada del nombre
   await nextFrame();
   initHorizontal();
+  initStack();
   initTimeline();
   initLayers();
   await nextFrame();

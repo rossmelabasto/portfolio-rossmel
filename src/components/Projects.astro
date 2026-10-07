@@ -31,8 +31,32 @@ const others = projects.filter((p) => !p.featured);
         <Sketch name="swipe" seed={8} class="h-10 w-28" />
       </div>
     </div>
+    <ol data-stack class="border-t border-line md:hidden" style={`--n:${featured.length}`}>
+      {featured.map((p, i) => (
+        <li data-stack-item style={`--c:${p.accent}`} class="border-b border-line">
+          <a href={paths.project(lang, p.slug)} class="block no-underline">
+            <span class="flex items-baseline gap-3 py-3">
+              <span class="w-6 shrink-0 font-mono text-xs text-muted">{String(i + 1).padStart(2, '0')}</span>
+              <span data-stack-name class="display flex-1 text-2xl font-semibold">{p.name}</span>
+              <span class="font-mono text-xs text-muted">{p.year}</span>
+            </span>
+            <span data-stack-body class="grid">
+              <span class="min-h-0 overflow-hidden">
+                <span data-stack-media class="relative mb-3 block overflow-hidden rounded-2xl border border-line bg-bg-2" style={`background: radial-gradient(120% 90% at ${20 + i * 15}% 20%, color-mix(in oklab, ${p.accent} 70%, transparent), transparent 60%), radial-gradient(90% 90% at 90% 100%, color-mix(in oklab, ${p.accent} 30%, transparent), transparent 70%);`}>
+                  {p.doodle && <Sketch name={p.doodle} seed={i + 61} draw={false} class="absolute right-[8%] top-1/2 h-[62%] w-[42%] -translate-y-1/2 -rotate-6 text-fg/70" />}
+                </span>
+                <span class="flex items-start justify-between gap-4 pb-4">
+                  <span class="min-h-[4.5rem] text-muted">{p.tagline[lang]}</span>
+                  <span class="kicker shrink-0 text-[var(--c)]">{s.work.view} ↗</span>
+                </span>
+              </span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
     {featured.map((p, i) => (
-      <a data-card data-hover data-draw-host href={paths.project(lang, p.slug)} class="group relative block shrink-0 no-underline md:w-[42vw] md:snap-center" style={`--c:${p.accent}`}>
+      <a data-card data-hover data-draw-host href={paths.project(lang, p.slug)} class="group relative hidden shrink-0 no-underline md:block md:w-[42vw] md:snap-center" style={`--c:${p.accent}`}>
         <div class="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-bg-2">
           <div data-card-media class="absolute inset-0" style={`background: radial-gradient(120% 90% at ${20 + i * 15}% 20%, color-mix(in oklab, ${p.accent} 70%, transparent), transparent 60%), radial-gradient(90% 90% at 90% 100%, color-mix(in oklab, ${p.accent} 30%, transparent), transparent 70%);`}></div>
           <span class="display absolute bottom-4 left-6 text-[9vw] font-bold leading-none text-fg/90 mix-blend-overlay md:text-[clamp(2.88rem,6vw,5.4rem)]">{p.name}</span>
@@ -65,3 +89,15 @@ const others = projects.filter((p) => !p.featured);
     ))}
   </ul>
 </section>
+
+<style>
+  /* Lista móvil de proyectos destacados. Sin JS o con movimiento reducido: filas con su descripción.
+     Con .is-live (animations.ts → initStack) la lista queda fija y solo el proyecto activo se abre. */
+  [data-stack-media] { display: none; height: clamp(5.5rem, calc(100svh - 84px - var(--n) * 3.3rem - 11rem), 12rem); }
+  [data-stack-body] { grid-template-rows: 1fr; transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s; }
+  [data-stack-name] { transition: color 0.3s, opacity 0.3s; }
+  :global(.is-live) [data-stack-media] { display: block; }
+  :global(.is-live) [data-stack-item]:not([data-active]) [data-stack-body] { grid-template-rows: 0fr; opacity: 0; }
+  :global(.is-live) [data-stack-item]:not([data-active]) [data-stack-name] { opacity: 0.45; }
+  :global(.is-live) [data-stack-item][data-active] [data-stack-name] { color: var(--c); }
+</style>
