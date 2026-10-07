@@ -97,6 +97,7 @@ Antes de dar algo por terminado: `npm run build`, `npm run check` y `npm run ver
 - v3.23: selector de país en el teléfono del formulario (Bolivia por defecto, `libphonenumber-js` solo en
   el build). `TELEGRAM_CHAT_ID` ya está en Pages (Production); falta que Rossmel pegue
   `TELEGRAM_BOT_TOKEN` (bot @rossmel_and_claude_bot) y redesplegar.
+- v3.24: Notebook v3 + open source: ficha `notebook` reescrita (textos de `docs/HANDOFF-NOTEBOOK.md`, que no se commitea), enlace a GitHub, `featured: true`; artículo `notebook-apuntes-con-memoria` / `en/notebook-notes-with-memory` con capturas de la demo (datos ficticios) en `public/blog/notebook/` (primer artículo con imágenes: van en `public/blog/<tema>/` y se enlazan con Markdown). Homelab sin "gestión del hogar" (Grocy se eliminó). Tarjetas de Proyectos: `md:min-h-[4.5rem]` en la descripción (aguanta 3 líneas sin desalinear).
 - Siguiente: capturas y video de AdvAI (Rossmel); GitHub/LinkedIn (docs/).
 - Analítica: inyección automática de Cloudflare, sin token.
 - Preguntas abiertas para Rossmel y decisiones por proyecto: `docs/PROYECTOS-CANDIDATOS.md`.
