@@ -13,7 +13,7 @@ Actualizado: sept. 2026 (tras las respuestas de Rossmel y el informe de Claude C
 | Link'u (agua potable, Sipe Sipe) | galería | en experiencia (proyecto pagado) | capturas |
 | Homelab + OpenClaw | galería | ✅ | capturas (sin mostrar URLs internas) |
 | rOS | galería | ✅ | capturas lindas (escritorio, fastfetch, arranque) |
-| Notebook (en vivo) | lista + En vivo | ✅ | revisar textos |
+| Notebook (en vivo, open source) | galería (destacado) + En vivo | ✅ | textos actualizados el 2026-10-07 (v3 + código abierto) |
 | Rubik (en vivo) | lista + En vivo | ✅ | revisar textos |
 | Selflix (en vivo) | lista + En vivo | ❌ | revisar textos |
 | Adsie · WANT | lista | en experiencia | — |
