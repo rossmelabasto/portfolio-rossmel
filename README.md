@@ -155,7 +155,8 @@ Prepararlas todas juntas congelaba el hero ~300–400 ms en celulares (se veía 
 |---|---|
 | `data-split` | Título que entra línea por línea (SplitText + máscara) |
 | `data-reveal` (+ `data-reveal-delay="0.2"`) | Sube y aparece al entrar en pantalla |
-| `data-stack` (+ `data-stack-item`) | Lista de proyectos destacados en celular: queda fija y el scroll abre un proyecto a la vez (encaja en cada uno). Sin JS/reduced-motion: filas con descripción |
+| `data-stack` (+ `data-stack-item`, `-name`, `-body`) | Lista en celular que queda fija y el scroll abre un ítem a la vez (encaja en cada uno): Proyectos, Experiencia, Stack y Cómo trabajo. Si con algún ítem abierto no cabe en la pantalla, no se fija. Sin JS/reduced-motion: todo abierto. Estilos en `global.css` |
+| `data-focus-item` | En celular el elemento crece y se ilumina al pasar por el centro de la pantalla (otros proyectos, En vivo, Blog). Solo transform: no cambia el alto |
 | `data-slide="left"` / `"right"` | Entra desde ese costado con un leve giro (acepta `data-reveal-delay`); el contenedor necesita `overflow-x-clip` |
 | `data-draw` (lo pone `<Sketch>`) | Dibujo fine line a mano que se traza solo al entrar en pantalla |
 | `data-layers` (+ hijos `data-layer="0.5"`, `data-layer-outline`) | Foto en capas: parallax por profundidad al hacer scroll, el contorno aparece y crece, inclinación con el mouse |
@@ -535,6 +536,7 @@ Ramas:
 | 2026-09 | v3.13: botón "volver arriba" con anillo de progreso y más dibujos a mano (subrayados/círculos en hero, experiencia, proyectos, historia y los 22 artículos). Pedido de Rossmel. |
 | 2026-09 | v3.15: nuevo titular del hero ("Construyo interfaces rápidas, cuidadas y listas para producción. Programo desde 2020…"), íconos en los botones CV y ES/EN (nav y barra del CV) y el botón "volver arriba" sube al llegar al footer para no tapar sus enlaces. Pedido de Rossmel. |
 | 2026-09 | Traspaso a Claude local: guía `docs/CONTINUAR.md` y `npm run verify` (chequeo automático tras el build). |
+| 2026-10 | Celular: Experiencia, Stack y Cómo trabajo usan la misma lista fija que Proyectos (Experiencia muestra cargo, resumen y tecnologías, con enlace al CV para el detalle); otros proyectos, En vivo y Blog crecen al pasar por el centro (`data-focus-item`); menos espacio vertical entre secciones. La home pasó de ~21 a ~14,8 pantallas de celular. Escritorio sin cambios. Pedido de Rossmel. |
 | 2026-10 | Proyectos destacados en celular: en vez de 7 tarjetas grandes (~4 pantallas de scroll), una lista fija donde el scroll abre un proyecto a la vez (`data-stack`, ~2,4 pantallas; ~1,8 sin animaciones). Escritorio sin cambios. Pedido de Rossmel. |
 | 2026-10 | Notebook v3 y open source (MIT): ficha reescrita (búsqueda híbrida sqlite-vec + FTS5, Recall@6 93 %, modo estudio, IA en planes gratuitos, enlace a GitHub), pasa a destacado; artículo "Notebook: mis apuntes como un chat conmigo mismo" (ES/EN) con capturas de la demo en `public/blog/notebook/`. Homelab ya no menciona Grocy (eliminado). Descripción de las tarjetas de Proyectos con alto mínimo de 3 líneas. Pedido de Rossmel. |
 | 2026-10 | Formulario: campo opcional de WhatsApp/teléfono y aviso por Telegram además del correo (un mensaje llegó con un correo mal escrito que rebotó, y Gmail no avisó a tiempo). Pedido de Rossmel. |

@@ -9,7 +9,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const s = t(lang);
 ---
-<section id="stack" class="py-32">
+<section id="stack" class="py-20 md:py-32">
   <h2 class="kicker mb-10 px-5 md:px-10">{s.stack.kicker}</h2>
   <div class="overflow-hidden border-y border-line py-6" aria-hidden="true">
     <div class="marquee-track">
@@ -18,7 +18,25 @@ const s = t(lang);
       ))}
     </div>
   </div>
-  <div class="mt-16 grid gap-4 px-5 md:grid-cols-2 md:px-10 lg:grid-cols-4">
+  <div class="mt-12 px-5 md:hidden">
+  <ol data-stack class="border-t border-line">
+    {skills.map((g, i) => (
+      <li data-stack-item class="border-b border-line">
+        <div class="flex items-center gap-3 py-3">
+          {icons[i] && <Sketch name={icons[i]} seed={i + 14} draw={false} class="h-7 w-7 shrink-0 text-accent" />}
+          <h3 data-stack-name class="display flex-1 text-2xl font-semibold">{g.group[lang]}</h3>
+          <span class="font-mono text-xs text-muted">{g.items.length}</span>
+        </div>
+        <div data-stack-body>
+          <div><ul class="flex flex-wrap gap-1.5 pb-5">
+            {g.items.map((it) => <li class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">{tr(it, lang)}</li>)}
+          </ul></div>
+        </div>
+      </li>
+    ))}
+  </ol>
+  </div>
+  <div class="mt-16 hidden gap-4 px-5 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-4">
     {skills.map((g, i) => (
       <div class="group rounded-3xl border border-line bg-bg-2 p-7 transition-colors hover:bg-accent hover:text-accent-ink" data-reveal data-reveal-delay={i * 0.06} data-draw-host>
         {icons[i] && <Sketch name={icons[i]} seed={i + 14} class="mb-5 h-12 w-12 text-accent transition-colors group-hover:text-accent-ink" />}
