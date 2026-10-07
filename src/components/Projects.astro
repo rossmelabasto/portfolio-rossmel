@@ -76,12 +76,12 @@ const others = projects.filter((p) => !p.featured);
   </div>
 </section>
 
-<section class="px-5 py-24 md:px-10">
+<section class="px-5 py-14 md:px-10 md:py-24">
   <ul class="border-t border-line">
     {others.map((p, i) => (
       <li class="border-b border-line" data-reveal>
-        <a href={paths.project(lang, p.slug)} data-hover data-draw-host class="group flex flex-col gap-2 py-6 transition-colors hover:text-accent md:grid md:grid-cols-12 md:items-baseline md:gap-4">
-          <span class="display flex items-center gap-4 text-3xl font-semibold md:col-span-4 md:text-5xl">{p.name}{p.doodle && <Sketch name={p.doodle} seed={i + 71} class="h-9 w-9 shrink-0 text-accent md:h-11 md:w-11" />}</span>
+        <a href={paths.project(lang, p.slug)} data-hover data-draw-host data-focus-item class="group flex origin-left flex-col gap-1 py-4 transition-colors hover:text-accent md:grid md:grid-cols-12 md:items-baseline md:gap-4 md:py-6">
+          <span class="display flex items-center gap-3 text-2xl font-semibold md:col-span-4 md:gap-4 md:text-5xl">{p.name}{p.doodle && <Sketch name={p.doodle} seed={i + 71} class="h-7 w-7 shrink-0 text-accent md:h-11 md:w-11" />}</span>
           <span class="hidden text-muted md:col-span-5 md:block">{p.tagline[lang]}</span>
           <span class="kicker md:col-span-3 md:text-right">{p.kind[lang]} · {p.year}</span>
         </a>
@@ -91,13 +91,7 @@ const others = projects.filter((p) => !p.featured);
 </section>
 
 <style>
-  /* Lista móvil de proyectos destacados. Sin JS o con movimiento reducido: filas con su descripción.
-     Con .is-live (animations.ts → initStack) la lista queda fija y solo el proyecto activo se abre. */
-  [data-stack-media] { display: none; height: clamp(5.5rem, calc(100svh - 84px - var(--n) * 3.3rem - 11rem), 12rem); }
-  [data-stack-body] { grid-template-rows: 1fr; transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s; }
-  [data-stack-name] { transition: color 0.3s, opacity 0.3s; }
+  /* Solo lo propio de Proyectos; la mecánica de la lista fija está en global.css ([data-stack]). */
+  [data-stack-media] { display: none; height: clamp(4.5rem, calc(100svh - 84px - var(--n) * 3.3rem - 11rem), 12rem); }
   :global(.is-live) [data-stack-media] { display: block; }
-  :global(.is-live) [data-stack-item]:not([data-active]) [data-stack-body] { grid-template-rows: 0fr; opacity: 0; }
-  :global(.is-live) [data-stack-item]:not([data-active]) [data-stack-name] { opacity: 0.45; }
-  :global(.is-live) [data-stack-item][data-active] [data-stack-name] { color: var(--c); }
 </style>

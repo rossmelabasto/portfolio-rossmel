@@ -326,3 +326,17 @@ html[data-motion='reduced'] [data-preloader] { display: none; }
   animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
 }
+
+/* Listas fijas en celular ([data-stack], animations.ts → initStack): sin JS o con movimiento reducido
+   se ven todos los ítems abiertos; con .is-live solo el activo ([data-active]) muestra su cuerpo. */
+[data-stack-body] {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s;
+}
+[data-stack-body] > * { min-height: 0; overflow: hidden; }
+[data-stack-name] { transition: color 0.3s, opacity 0.3s; }
+.is-live [data-stack-item]:not([data-active]) [data-stack-body] { grid-template-rows: 0fr; opacity: 0; }
+.is-live [data-stack-item]:not([data-active]) [data-stack-name] { opacity: 0.45; }
+.is-live [data-stack-item][data-active] [data-stack-name] { color: var(--c, var(--accent)); }
+.no-transition [data-stack-body], .no-transition [data-stack-name] { transition: none !important; }
