@@ -1,4 +1,4 @@
-# portfolio-rossmel · v3
+# ross_portfolio · v3
 
 Portafolio y CV de **Rossmel Abasto**.
 
@@ -266,7 +266,7 @@ aparte `rossmel-web`, que duplicaba el sitio.)
 | Ajuste | Valor |
 |---|---|
 | Proyecto | `rossmel-portfolio` (Workers & Pages → Create → Pages → **Connect to Git**; nunca "Direct Upload": no se puede pasar a Git después) |
-| Repo / rama de producción | `rossmelabasto/portfolio-rossmel` · `main` |
+| Repo / rama de producción | `rossmelabasto/ross_portfolio` · `main` |
 | Framework preset | Astro (o None) |
 | Build command | `npm run build` |
 | Output directory | `dist` |
@@ -349,12 +349,12 @@ canales), `503 not_configured` (falta Turnstile o no hay ningún canal).
 #### Comentarios (giscus, opcional)
 Los comentarios usan **giscus**: se guardan como GitHub Discussions del repo (gratis, sin base de datos,
 se comenta con cuenta de GitHub). No aparecen hasta configurar estas variables:
-1. GitHub → `rossmelabasto/portfolio-rossmel` → Settings → General → Features → activar **Discussions**.
+1. GitHub → `rossmelabasto/ross_portfolio` → Settings → General → Features → activar **Discussions**.
 2. Instalar la app https://github.com/apps/giscus solo en ese repo.
 3. En Discussions, crear la categoría **Comentarios** (tipo *Announcement*: solo giscus crea hilos).
 4. Entrar a https://giscus.app, poner el repo y la categoría → copiar `data-repo-id` y `data-category-id`.
 5. Cloudflare Pages → `rossmel-portfolio` → Settings → Variables and Secrets (Production), como texto:
-   `PUBLIC_GISCUS_REPO=rossmelabasto/portfolio-rossmel`, `PUBLIC_GISCUS_REPO_ID=…`,
+   `PUBLIC_GISCUS_REPO=rossmelabasto/ross_portfolio`, `PUBLIC_GISCUS_REPO_ID=…`,
    `PUBLIC_GISCUS_CATEGORY=Comentarios`, `PUBLIC_GISCUS_CATEGORY_ID=…` → Deployments → Retry.
    (No son secretos: son IDs públicos.)
 El formulario de contacto al final de cada artículo sigue funcionando igual.
@@ -490,7 +490,7 @@ Flujo diario: push a `main` = producción; push a otra rama / PR = URL de vista 
 **Guía completa: [`docs/CONTINUAR.md`](docs/CONTINUAR.md)** (mapa del código, recetas, preferencias de
 Rossmel, pendientes y trampas conocidas).
 
-1. `git clone git@github.com:rossmelabasto/portfolio-rossmel.git && cd portfolio-rossmel && npm install`
+1. `git clone git@github.com:rossmelabasto/ross_portfolio.git && cd portfolio-rossmel && npm install`
 2. Abrir `claude` en la carpeta: lee `CLAUDE.md` automáticamente.
 3. Primer mensaje sugerido: *"Lee docs/CONTINUAR.md, CLAUDE.md y README.md. Corre build, check y
    verify para confirmar que todo está bien y dime qué pendientes ves."*

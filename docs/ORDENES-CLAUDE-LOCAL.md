@@ -3,14 +3,14 @@
 > **Histórico (ya ejecutado, sept. 2026).** El sitio está publicado. Para seguir trabajando, usar
 > [`CONTINUAR.md`](CONTINUAR.md).
 
-Contexto: el portafolio y el CV viven en **este repo** (`rossmelabasto/portfolio-rossmel`, Astro 7),
+Contexto: el portafolio y el CV viven en **este repo** (`rossmelabasto/ross_portfolio`, Astro 7),
 construido en sesiones de Claude Code web. Se publica con **un solo** proyecto de Cloudflare Pages
 conectado a Git, con dos dominios. Todo el detalle está en `README.md` → "Despliegue".
 
 Pega esto en Claude Code local:
 
 ```text
-Lee README.md (sección "Despliegue"), CLAUDE.md y este archivo del repo rossmelabasto/portfolio-rossmel.
+Lee README.md (sección "Despliegue"), CLAUDE.md y este archivo del repo rossmelabasto/ross_portfolio.
 Vamos a publicarlo en Cloudflare Pages. Haz esto en orden y pídeme confirmación antes de cualquier
 paso irreversible o que toque producción:
 
@@ -28,7 +28,7 @@ paso irreversible o que toque producción:
    Muéstrame el log y, con mi OK, git push origin main. No toques la rama master (es la v1 de 2022).
 
 4. Cloudflare (en mi Chrome o guiándome paso a paso): Workers & Pages → Create → Pages →
-   Connect to Git (NUNCA Direct Upload). Autoriza solo el repo portfolio-rossmel.
+   Connect to Git (NUNCA Direct Upload). Autoriza solo el repo ross_portfolio.
    - Nombre: rossmel-portfolio · rama de producción: main
    - Build: npm run build · Output: dist · Root: vacío · Variable NODE_VERSION=22
    Espera el primer deploy y revisa el log de build.

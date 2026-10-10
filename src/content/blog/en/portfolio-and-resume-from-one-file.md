@@ -9,7 +9,7 @@ translationOf: 'portafolio-y-cv-desde-un-solo-archivo'
 
 My previous portfolio was from 2022, built in Angular, and it did what most portfolios do: go stale. When the website, the resume and the profile are maintained separately, one of them is always out of date.
 
-For this version I set myself a rule: **==content is written only once==**. This post covers how the site you're reading is built, and the [code is public](https://github.com/rossmelabasto/portfolio-rossmel).
+For this version I set myself a rule: **==content is written only once==**. This post covers how the site you're reading is built, and the [code is public](https://github.com/rossmelabasto/ross_portfolio).
 
 ## A single source of truth
 

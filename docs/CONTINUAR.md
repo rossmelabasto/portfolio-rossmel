@@ -15,7 +15,7 @@ Orden de lectura sugerido: **este archivo → `CLAUDE.md` → `README.md`** (ref
 | Portafolio | https://portfolio.rossmel.top (ES) · `/en/` (EN) |
 | CV | https://cv.rossmel.top (= `/cv/`) · `/en/cv/` · PDF en `/cv/Rossmel-Abasto-CV-{ES,EN}.pdf` |
 | Blog | `/blog/` · `/en/blog/` (11 artículos, cada uno en ES y EN) |
-| Repo | `rossmelabasto/portfolio-rossmel` (**público**) · rama `main` = producción |
+| Repo | `rossmelabasto/ross_portfolio` (**público**) · rama `main` = producción |
 | Hosting | Cloudflare Pages, proyecto `rossmel-portfolio`; cada push a `main` publica solo |
 | Stack | Astro 7 (estático) · Tailwind 4 · GSAP + Lenis · rough.js (en el build) · TypeScript |
 
@@ -24,7 +24,7 @@ La rama `master` es la v1 (Angular 2022): no tocarla.
 ## 2. Arranque
 
 ```bash
-git clone git@github.com:rossmelabasto/portfolio-rossmel.git && cd portfolio-rossmel
+git clone git@github.com:rossmelabasto/ross_portfolio.git && cd portfolio-rossmel
 npm install                      # Node ≥ 22.12 (hay .nvmrc)
 npm run dev                      # http://localhost:4321
 ```

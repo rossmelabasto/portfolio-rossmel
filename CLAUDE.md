@@ -1,4 +1,4 @@
-# CLAUDE.md — portfolio-rossmel
+# CLAUDE.md — ross_portfolio
 
 Portafolio + CV de Rossmel Abasto. Idioma de trabajo: **español** (el sitio es ES/EN).
 **Para retomar el proyecto: `docs/CONTINUAR.md`** (guía de traspaso). `README.md` = referencia completa.
