@@ -335,6 +335,20 @@ export const sketches = {
       g.line(38, 74, 60, 74, o),
     ],
   },
+  manga: {
+    // libro abierto con viñetas de manga en las dos páginas
+    viewBox: '0 0 100 100',
+    shapes: (g, o) => [
+      g.path('M50 26 C38 19 22 19 7 24 L7 82 C22 77 38 77 50 84 Z', o),
+      g.path('M50 26 C62 19 78 19 93 24 L93 82 C78 77 62 77 50 84 Z', { ...o, seed: 4 }),
+      g.rectangle(13, 32, 14, 18, { ...o, seed: 11 }),
+      g.rectangle(30, 32, 15, 18, { ...o, seed: 12 }),
+      g.rectangle(13, 54, 32, 18, { ...o, seed: 13 }),
+      g.rectangle(55, 32, 32, 13, { ...o, seed: 14 }),
+      g.rectangle(55, 49, 14, 23, { ...o, seed: 15 }),
+      g.ellipse(79, 60, 14, 10, { ...o, seed: 16 }),
+    ],
+  },
   tv: {
     viewBox: '0 0 100 100',
     shapes: (g, o) => [
