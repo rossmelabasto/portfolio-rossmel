@@ -8,7 +8,7 @@ lang: 'es'
 
 Mi portafolio anterior era de 2022, en Angular, y hacía lo que hace la mayoría de los portafolios: quedarse viejo. Cuando la web, el CV y el perfil se mantienen por separado, siempre alguno queda desactualizado.
 
-Para esta versión me puse una regla: **==el contenido se escribe una sola vez==**. Este artículo cuenta cómo está hecho el sitio que estás leyendo, y el [código es público](https://github.com/rossmelabasto/portfolio-rossmel).
+Para esta versión me puse una regla: **==el contenido se escribe una sola vez==**. Este artículo cuenta cómo está hecho el sitio que estás leyendo, y el [código es público](https://github.com/rossmelabasto/ross_portfolio).
 
 ## Una sola fuente de verdad
 
