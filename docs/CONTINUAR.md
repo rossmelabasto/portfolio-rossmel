@@ -24,7 +24,7 @@ La rama `master` es la v1 (Angular 2022): no tocarla.
 ## 2. Arranque
 
 ```bash
-git clone git@github.com:rossmelabasto/ross_portfolio.git && cd portfolio-rossmel
+git clone git@github.com:rossmelabasto/ross_portfolio.git && cd ross_portfolio
 npm install                      # Node ≥ 22.12 (hay .nvmrc)
 npm run dev                      # http://localhost:4321
 ```

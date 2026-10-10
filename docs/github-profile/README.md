@@ -1,5 +1,5 @@
 <!-- README del perfil de GitHub → repo público rossmelabasto/rossmelabasto.
-     Generado desde portfolio-rossmel/docs/github-profile (ver INSTRUCCIONES.md). -->
+     Generado desde ross_portfolio/docs/github-profile (ver INSTRUCCIONES.md). -->
 
 <a href="https://portfolio.rossmel.top">
   <img src="./assets/header.svg" alt="Rossmel Abasto — Frontend → Fullstack · IA · Linux" width="100%" />

@@ -490,7 +490,7 @@ Flujo diario: push a `main` = producción; push a otra rama / PR = URL de vista 
 **Guía completa: [`docs/CONTINUAR.md`](docs/CONTINUAR.md)** (mapa del código, recetas, preferencias de
 Rossmel, pendientes y trampas conocidas).
 
-1. `git clone git@github.com:rossmelabasto/ross_portfolio.git && cd portfolio-rossmel && npm install`
+1. `git clone git@github.com:rossmelabasto/ross_portfolio.git && cd ross_portfolio && npm install`
 2. Abrir `claude` en la carpeta: lee `CLAUDE.md` automáticamente.
 3. Primer mensaje sugerido: *"Lee docs/CONTINUAR.md, CLAUDE.md y README.md. Corre build, check y
    verify para confirmar que todo está bien y dime qué pendientes ves."*

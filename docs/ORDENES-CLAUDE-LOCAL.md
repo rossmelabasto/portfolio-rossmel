@@ -16,9 +16,9 @@ paso irreversible o que toque producción:
 
 1. Repo "rossmel-web": ya no se usa (duplicaba el sitio). No crees proyectos de Pages para él.
    Propónme archivarlo en GitHub (no borrarlo) y actualiza tu memoria: el sitio vive en
-   portfolio-rossmel.
+   ross_portfolio.
 
-2. Clona/actualiza portfolio-rossmel en ~/code/portfolio-rossmel. Verifica en local:
+2. Clona/actualiza ross_portfolio en ~/code/ross_portfolio. Verifica en local:
    npm ci && npm run check && npm run build && npm run cv:pdf
    (cv:pdf usa Chromium del sistema o $CHROMIUM_PATH). Si los PDF de public/cv/ cambian, avísame.
    Abre `npx astro preview` y revisa /, /en/, /cv/, /en/cv/ y un caso de estudio.

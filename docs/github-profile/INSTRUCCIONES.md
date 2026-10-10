@@ -8,6 +8,6 @@
 5. Perfil: bio "Frontend → Fullstack · IA · Linux", sitio https://portfolio.rossmel.top,
    ubicación Cochabamba, Bolivia. Fijar (pin) los repos públicos que valgan la pena.
 
-Regenerar el encabezado animado (si cambian textos): en portfolio-rossmel,
+Regenerar el encabezado animado (si cambian textos): en ross_portfolio,
 `python3 scripts/build-github-header.py` (requiere `pip install fonttools brotli`) y copiar
 `docs/github-profile/assets/header.svg` al repo del perfil.
