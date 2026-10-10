@@ -447,25 +447,25 @@ export const projects: Project[] = [
     year: '2026',
     kind: { es: 'Proyecto personal · Infraestructura', en: 'Personal project · Infrastructure' },
     tagline: {
-      es: 'Servidor casero 24/7 con una docena de servicios y un agente de IA (OpenClaw) que lo opera.',
-      en: 'A 24/7 home server running a dozen services, operated by an AI agent (OpenClaw).',
+      es: 'Servidor casero 24/7 con diez servicios públicos y un agente de IA (OpenClaw) que lo opera.',
+      en: 'A 24/7 home server running ten public services, operated by an AI agent (OpenClaw).',
     },
     problem: {
-      es: 'Un Pentium de 4 hilos y 3,7 GB de RAM, detrás de CGNAT y sin poder abrir puertos. Aun así sirve 12 servicios públicos bajo mi dominio, con HTTPS, backups y monitoreo, a costo cero.',
-      en: 'A 4-thread Pentium with 3.7 GB of RAM, behind CGNAT with no way to open ports. It still serves 12 public services under my domain, with HTTPS, backups and monitoring, at zero cost.',
+      es: 'Un Pentium de 4 hilos y 3,7 GB de RAM, detrás de CGNAT y sin poder abrir puertos. Aun así sirve 10 servicios públicos bajo mi dominio, con HTTPS, backups y monitoreo, a costo cero.',
+      en: 'A 4-thread Pentium with 3.7 GB of RAM, behind CGNAT with no way to open ports. It still serves 10 public services under my domain, with HTTPS, backups and monitoring, at zero cost.',
     },
     role: { es: 'Todo: infraestructura, automatización y el agente.', en: 'Everything: infrastructure, automation and the agent.' },
     highlights: {
       es: [
         'Exposición segura con Cloudflare Tunnel (sin puertos abiertos), acceso privado por Tailscale, UFW y fail2ban.',
-        'Servicios en Docker y systemd: media server, Notebook (mis apuntes con IA, open source) y más; backups con timers.',
+        'Servicios en Docker y systemd: media server, lector de mangas, Notebook (mis apuntes con IA, open source) y más; backups con timers.',
         'Agente OpenClaw 24/7 (webchat y Telegram) con 41 skills de procedimientos: despliegues, mantenimiento, reportes y memoria consolidada.',
         'Gateway SMS con un módem USB: comandos por SMS con lista blanca y alertas de salud del servidor cada 5 minutos.',
         'Virtualización KVM: Rocky Linux con LVM y Windows Server 2022 instalado de forma desatendida.',
       ],
       en: [
         'Secure exposure via Cloudflare Tunnel (no open ports), private access over Tailscale, UFW and fail2ban.',
-        'Services on Docker and systemd: media server, Notebook (my AI-powered notes, open source) and more; timer-based backups.',
+        'Services on Docker and systemd: media server, manga reader, Notebook (my AI-powered notes, open source) and more; timer-based backups.',
         '24/7 OpenClaw agent (webchat and Telegram) with 41 procedure skills: deployments, maintenance, reports and memory consolidation.',
         'SMS gateway on a USB modem: whitelisted SMS commands and server health alerts every 5 minutes.',
         'KVM virtualization: Rocky Linux with LVM and an unattended Windows Server 2022 install.',
@@ -631,6 +631,55 @@ export const projects: Project[] = [
     live: 'selflix.rossmel.top',
     doodle: 'tv',
     accent: '#a78bfa',
+    featured: false,
+    cv: false,
+  },
+  {
+    slug: 'manga',
+    name: 'Manga',
+    year: '2026',
+    kind: SELF_HOSTED,
+    tagline: {
+      es: 'Mi propio lector de mangas: biblioteca compartida, progreso por persona y app en el celular.',
+      en: 'My own manga reader: shared library, per-person progress and a phone app.',
+    },
+    problem: {
+      es: 'Los mangas vivían repartidos en PDFs de Telegram y archivos en el celular, y cada uno tenía que acordarse por qué tomo iba. Ahora están en una biblioteca con portadas en mi servidor, se leen desde el navegador o como app, y cada persona tiene su cuenta con su propio progreso. Agregar uno nuevo es soltarlo en una carpeta de la laptop.',
+      en: 'Manga lived scattered across Telegram PDFs and files on the phone, and everyone had to remember which volume they were on. Now it is a library with covers on my server, read in the browser or as an app, and each person has an account with their own progress. Adding a new one is dropping it into a folder on my laptop.',
+    },
+    role: { es: 'Todo: instalación, rediseño con mi marca, flujo de subida y optimización de archivos.', en: 'Everything: setup, redesign with my brand, upload pipeline and file optimization.' },
+    highlights: {
+      es: [
+        'Subida automática: un script en Python vigila una carpeta de la laptop, convierte y sube solo lo nuevo, retoma subidas cortadas, se puede pausar y avisa por Telegram.',
+        'PDF a CBZ sin pérdida: si cada página es una imagen, extrae los bytes originales en vez de recomprimir (72 de 72 tomos convertidos así).',
+        'Optimización medida: comparé JPEG, WebP y AVIF a varias resoluciones con páginas reales; una serie pasó de 13 GB a 2,7 GB (−79 %) sin pérdida visible en el celular.',
+        'Rediseño completo con la identidad de rOS, incluida la pantalla de login que el sistema de temas no cubre, aplicado de forma que sobrevive a las actualizaciones.',
+        'App instalable (PWA) con nombre e ícono propios, y una cuenta por persona con su propio progreso.',
+      ],
+      en: [
+        'Automatic uploads: a Python script watches a folder on my laptop, converts and uploads only what is new, resumes interrupted uploads, can be paused and notifies me on Telegram.',
+        'Lossless PDF to CBZ: when every page is a single image, it extracts the original bytes instead of re-encoding (72 of 72 volumes converted this way).',
+        'Measured optimization: I compared JPEG, WebP and AVIF at several resolutions on real pages; one series went from 13 GB to 2.7 GB (−79 %) with no visible loss on a phone.',
+        'Full redesign with the rOS identity, including the login screen the theme system does not cover, applied in a way that survives updates.',
+        'Installable app (PWA) with its own name and icon, and one account per person with their own progress.',
+      ],
+    },
+    learned: {
+      es: [
+        'Medir antes de comprimir: a 2000 px la trama de los mangas se volvía gris al hacer zoom; a 2400 px se conservaba con casi el mismo ahorro.',
+        'Personalizar sin romper las actualizaciones: en vez de editar archivos del contenedor, un script de arranque vuelve a aplicar la marca cada vez que inicia.',
+        'Pensar en cortes desde el principio: una subida de gigas por internet se interrumpe, así que el script tenía que poder retomar sin empezar de cero.',
+      ],
+      en: [
+        'Measure before compressing: at 2000 px the manga screentone turned grey when zooming in; at 2400 px it held up with almost the same savings.',
+        'Customize without breaking updates: instead of editing files inside the container, a startup script re-applies the branding every time it starts.',
+        'Design for interruptions from day one: a multi-gigabyte upload over the internet will get cut, so the script had to resume without starting over.',
+      ],
+    },
+    stack: ['Kavita', 'Docker', 'Python', 'rsync', 'systemd', 'CSS', 'PWA', 'Cloudflare Tunnel', 'Linux'],
+    live: 'manga.rossmel.top',
+    doodle: 'manga',
+    accent: '#ff7eb3',
     featured: false,
     cv: false,
   },
@@ -956,11 +1005,11 @@ export const story: { heading: L; doodles: SketchName[]; body: Record<Lang, stri
     body: {
       es: [
         'En esa misma época descubrí Linux, y fue otro mindblow: entender que el sistema operativo también se puede aprender, desarmar y armar a tu medida. Probé muchas distros, pero ((Arch)) siempre fue especial para mí: te obliga a entender cada pieza de tu sistema.',
-        'Hoy uso a diario rOS, mi propio flavor de Arch, que quiero convertir en una distro real, y mantengo un homelab en casa con una docena de servicios, cuidado por un agente de IA. Gran parte de lo que sé de servidores, redes y automatización lo aprendí ==rompiendo y arreglando== mi propio sistema.',
+        'Hoy uso a diario rOS, mi propio flavor de Arch, que quiero convertir en una distro real, y mantengo un homelab en casa con una decena de servicios, cuidado por un agente de IA. Gran parte de lo que sé de servidores, redes y automatización lo aprendí ==rompiendo y arreglando== mi propio sistema.',
       ],
       en: [
         'Around the same time I discovered Linux, and it blew my mind again: realizing the operating system is also something you can learn, take apart and put back together your way. I\'ve tried many distros, but ((Arch)) was always special to me: it makes you understand every piece of your system.',
-        'Today I daily-drive rOS, my own flavor of Arch that I want to turn into a real distro, and I run a homelab at home with a dozen services, looked after by an AI agent. A lot of what I know about servers, networking and automation I learned by ==breaking and fixing== my own system.',
+        'Today I daily-drive rOS, my own flavor of Arch that I want to turn into a real distro, and I run a homelab at home with about ten services, looked after by an AI agent. A lot of what I know about servers, networking and automation I learned by ==breaking and fixing== my own system.',
       ],
     },
   },

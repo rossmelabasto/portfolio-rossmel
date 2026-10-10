@@ -162,7 +162,7 @@ fuente NO se suben al repo (muestran la casa); las tiene Rossmel.
 - Proyectos de clientes: `confidential: true`, sin enlaces a código.
 - El repo es **público**: nada de infraestructura (hosts internos, puertos, IPs, túneles, rutas del servidor).
 - Secretos solo en Cloudflare (Variables and Secrets); nunca en archivos ni en el chat.
-- Subdominios que SÍ se muestran ("En vivo"): notebook, rubik, selflix. Los demás no (music, mcu,
+- Subdominios que SÍ se muestran ("En vivo"): notebook, rubik, selflix, manga. Los demás no (music, mcu,
   waitlist, stream, chat, admin, admin-music, ssh, ori, class, s, test).
 
 **Diseño**
